@@ -4,17 +4,13 @@ import com.banking.bankservice.dao.UserDao;
 import com.banking.bankservice.model.User;
 import com.banking.bankservice.service.UserService;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
-
-    @Autowired
-    public UserServiceImpl(UserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
     public User add(User user) {
