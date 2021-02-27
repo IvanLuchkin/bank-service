@@ -5,6 +5,7 @@ import com.banking.bankservice.model.User;
 import com.banking.bankservice.service.UserService;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getById(String id) {
+    public Optional<User> getById(ObjectId id) {
         return userDao.findById(id);
     }
 
