@@ -14,8 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @DataMongoTest
 @ExtendWith(SpringExtension.class)
 public class RoleRepositoryTest {
-    private static final Role TEST_ADMIN_ROLE = new Role(Role.RoleType.ADMIN);
-    private static final Role TEST_USER_ROLE = new Role(Role.RoleType.USER);
+    private static final Role TEST_ADMIN_ROLE = new Role(Role.Type.ADMIN);
+    private static final Role TEST_USER_ROLE = new Role(Role.Type.USER);
     @Autowired
     private RoleRepository roleRepository;
 
@@ -33,7 +33,7 @@ public class RoleRepositoryTest {
     @Test
     public void testFindByRoleName() {
         roleRepository.save(TEST_USER_ROLE);
-        Role actualRole = roleRepository.findByRoleType(Role.RoleType.USER).get();
+        Role actualRole = roleRepository.findByType(Role.Type.USER).get();
         assertNotNull(actualRole.getId());
     }
 

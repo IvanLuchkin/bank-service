@@ -6,5 +6,5 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface RoleRepository extends MongoRepository<Role, ObjectId> {
-    Optional<Role> findByRoleType(Role.RoleType roleType);
+    Optional<Role> findByType(Role.Type type);
 }

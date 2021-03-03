@@ -13,9 +13,9 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Role getByType(Role.RoleType roleType) {
-        return roleRepository.findByRoleType(roleType).orElseThrow(() ->
-                new EntityNotFoundException("Role " + roleType + " does not exist"));
+    public Role getByType(Role.Type type) {
+        return roleRepository.findByType(type).orElseThrow(() ->
+                new EntityNotFoundException("Role " + type + " does not exist"));
     }
 
     @Override

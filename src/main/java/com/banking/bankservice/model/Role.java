@@ -19,13 +19,13 @@ public class Role {
     private ObjectId id;
     @Field(targetType = FieldType.STRING)
     @Indexed(unique = true)
-    private RoleType roleType;
+    private Type type;
 
-    public Role(RoleType roleType) {
-        this.roleType = roleType;
+    public Role(Type type) {
+        this.type = type;
     }
 
-    public enum RoleType {
+    public enum Type {
         ADMIN, USER;
     }
 }

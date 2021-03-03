@@ -35,8 +35,8 @@ public class UserRepositoryTest {
 
     @Test
     public void whenInsertedIdAssigned() {
-        User savedUser = userRepository.save(testUser);
-        assertNotNull(savedUser.getId());
+        userRepository.save(testUser);
+        assertNotNull(testUser.getId());
     }
 
     @Test
