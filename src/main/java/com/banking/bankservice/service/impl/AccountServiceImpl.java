@@ -17,6 +17,11 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
 
     @Override
+    public Account add(Account account) {
+        return accountRepository.save(account);
+    }
+
+    @Override
     public List<Account> getByUserPhone(String phoneNumber) {
         return accountRepository.findAccountsByUserPhone(phoneNumber);
     }
@@ -33,10 +38,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void blockAccount(String accountNumber) {
-        Account accountInDb = getByAccountNumber(accountNumber);
-        accountInDb.setActive(false);
-        accountRepository.save(accountInDb);
+    public Account update(Account account) {
+        return accountRepository.save(account);
     }
 
     @Override

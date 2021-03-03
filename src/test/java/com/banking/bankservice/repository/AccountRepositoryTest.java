@@ -59,6 +59,8 @@ public class AccountRepositoryTest {
 
     @AfterEach
     public void tearDown() {
+        firstTestAccount.setUser(null);
+        secondTestAccount.setUser(null);
         accountRepository.deleteAll();
         userRepository.deleteAll();
     }
@@ -69,7 +71,6 @@ public class AccountRepositoryTest {
         firstTestAccount.setUser(firstTestUser);
         Account savedAccount = accountRepository.save(firstTestAccount);
         assertNotNull(savedAccount.getAccountNumber());
-        firstTestAccount.setUser(null);
     }
 
     @Test
@@ -97,21 +98,10 @@ public class AccountRepositoryTest {
         assertEquals(List.of(transaction),
                 accountRepository.getPaymentHistory(firstTestAccount.getAccountNumber(),
                         Pageable.unpaged()));
-
-        firstTestAccount.setUser(null);
     }
 
-    /**
-     "$unset" mongo aggregation function is not supported in Spring Boot 2.4.3 since there is a
-     transitive dependency on the embedded mongo 2.2.0, which is based on the old version of
-     MongoDB. Spring Boot 2.5.0-M2 has been released two weeks ago, it supports embedded mongo
-     of version 3.0.0, which is based on the latest version of MongoDB, but the Gradle
-     plugin has not yet been updated, so this test will always fail.
-
-     I have tested it manually with production DB, which is using the latest MongoDB version.
-     It works according to the requirements.
-     */
-    public void fixme_testFindByUserPhoneNumber() {
+    @Test
+    public void testFindByUserPhoneNumber() {
         userRepository.saveAll(List.of(firstTestUser, secondTestUser));
         firstTestAccount.setUser(firstTestUser);
         secondTestAccount.setUser(secondTestUser);

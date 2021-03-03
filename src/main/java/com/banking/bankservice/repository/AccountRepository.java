@@ -22,6 +22,7 @@ public interface AccountRepository extends PagingAndSortingRepository<Account, O
             "{$match: {'_id': ObjectId('?0')}}",
             "{$project: {'transactions': 1, '_id': 0}}",
             "{$unwind: {path: '$transactions'}}",
-            "{$replaceRoot: {newRoot: '$transactions'}}"})
+            "{$replaceRoot: {newRoot: '$transactions'}}",
+            "{$sort: {'date': -1}}"})
     List<Transaction> getPaymentHistory(String accountNumber, final Pageable pageable);
 }
